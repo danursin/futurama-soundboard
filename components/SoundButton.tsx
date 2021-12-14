@@ -28,7 +28,7 @@ const SoundButton: React.FC<SoundButtonProps> = ({ imgSrc, soundSrc, clickHandle
     };
 
     return (
-        <Button type="button" disabled={disabled && !triggerHappyMode} onClick={handleClick} style={{ padding: 0, margin: 0 }}>
+        <Button type="button" disabled={disabled && !triggerHappyMode} fluid onClick={handleClick} style={{ padding: 0, margin: 0 }} basic>
             <Image src={`/img/${imgSrc}`} alt={imgSrc} />
         </Button>
     );
