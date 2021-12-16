@@ -6,40 +6,40 @@ import type { NextPage } from "next";
 
 const sounds: Omit<SoundButtonProps, "triggerHappyMode">[] = [
     {
-        imgSrc: "farnsworth.jpg",
-        soundSrc: "farnsworth.mp3"
+        imgSrc: "amy.png",
+        soundSrc: "amy.mp3"
     },
     {
-        imgSrc: "bender_shutup.jpg",
+        imgSrc: "bender.png",
         soundSrc: "bender_shutup.mp3"
     },
     {
-        imgSrc: "morbo_doom.gif",
-        soundSrc: "morbo_doom.mp3"
+        imgSrc: "farnsworth.png",
+        soundSrc: "farnsworth.mp3"
     },
     {
-        imgSrc: "mr_panucci.jpg",
-        soundSrc: "mr_panucci.mp3"
+        imgSrc: "fry.png",
+        soundSrc: "fry.mp3"
     },
     {
-        imgSrc: "morbo_windmills.jpg",
-        soundSrc: "morbo_windmills.mp3"
-    },
-    {
-        imgSrc: "morbo_destroy_her.jpg",
-        soundSrc: "morbo_destroy_her.mp3"
-    },
-    {
-        imgSrc: "kif_boobies.jpg",
+        imgSrc: "kif.png",
         soundSrc: "kif_boobies.mp3"
     },
     {
-        imgSrc: "morbo.png",
-        soundSrc: "morbo_belligerent.mp3"
+        imgSrc: "leela.png",
+        soundSrc: "leela.mp3"
     },
     {
-        imgSrc: "farnsworth.jpg",
-        soundSrc: "farnsworth_pointless.mp3"
+        imgSrc: "morbo.png",
+        soundSrc: "morbo_doom.mp3"
+    },
+    {
+        imgSrc: "zapp.png",
+        soundSrc: "zapp.mp3"
+    },
+    {
+        imgSrc: "zoidberg.png",
+        soundSrc: "zoidberg.mp3"
     }
 ];
 
@@ -52,7 +52,15 @@ const Home: NextPage = () => {
                 <link rel="apple-touch-icon" sizes="128x128" href="img/planet_express.png"></link>
             </Head>
 
-            <Header content="Futurama Soundboard" color="grey" block size="huge" image="/img/planet_express.png" />
+            <Header
+                content="Futurama Soundboard"
+                color="grey"
+                block
+                style={{ paddingTop: 5 }}
+                size="huge"
+                image="/img/planet_express.png"
+                className="text-futurama"
+            />
 
             <Grid columns="3" stretched centered padded="horizontally">
                 {sounds.map((sound) => (
