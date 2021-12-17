@@ -9,18 +9,12 @@ const Navbar: React.FC = () => {
         <Menu tabular>
             <Menu.Menu position="left">
                 <Menu.Item>
-                    <Header
-                        content="Futurama Soundboard"
-                        color="grey"
-                        size="huge"
-                        image="/img/planet_express.png"
-                        className="text-futurama"
-                    />
+                    <Header content="Futurama" color="grey" image="/img/planet_express.png" className="text-futurama" />
                 </Menu.Item>
             </Menu.Menu>
             <Menu.Menu position="right">
                 <Menu.Item>
-                    <Icon link name="help circle" color="grey" size="huge" onClick={() => setModalOpen(true)} />
+                    <Icon link name="help circle" color="grey" size="large" onClick={() => setModalOpen(true)} />
                     <HelpModal open={modalOpen} onClose={() => setModalOpen(false)} />
                 </Menu.Item>
             </Menu.Menu>

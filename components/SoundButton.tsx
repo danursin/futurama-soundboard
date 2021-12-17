@@ -1,5 +1,5 @@
 import { Button, Image, SemanticCOLORS } from "semantic-ui-react";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { characters, imgMap, playSound, soundMap } from "../services/soundService";
 
 import { AppContext } from "./AppContextProvider";
@@ -15,6 +15,7 @@ const SoundButton: React.FC<SoundButtonProps> = ({ character }) => {
     const [disabled, setDisabled] = useState<boolean>(false);
     const [clickStart, setClickStart] = useState<number>();
     const { selectedCharacter, setSelectedCharacter } = useContext(AppContext);
+    const buttonRef = useRef<Button>(null);
 
     useEffect(() => {
         if (!clickStart) {
@@ -28,12 +29,14 @@ const SoundButton: React.FC<SoundButtonProps> = ({ character }) => {
         };
     }, [character, clickStart, selectedCharacter, setSelectedCharacter]);
 
-    const onMouseDown = () => {
+    const onMouseDown = (event: React.SyntheticEvent) => {
+        event.preventDefault();
         console.log("Mouse down");
         setClickStart(+new Date());
         setSelectedCharacter(undefined);
     };
-    const onMouseUp = async () => {
+    const onMouseUp = async (event: React.SyntheticEvent) => {
+        event.preventDefault();
         if (!clickStart) {
             return;
         }
@@ -90,7 +93,8 @@ const SoundButton: React.FC<SoundButtonProps> = ({ character }) => {
             fluid
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
-            // onClick={handleClick}
+            onContextMenu={() => false}
+            ref={buttonRef}
             style={{ padding: 0, margin: 0, opacity: getOpacity() }}
             basic={isBasic()}
             color={getColor()}
