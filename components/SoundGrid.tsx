@@ -1,8 +1,7 @@
-import { characters, imgMap, soundMap } from "../services/soundService";
-
 import { Grid } from "semantic-ui-react";
 import React from "react";
 import SoundButton from "./SoundButton";
+import { characters } from "../services/soundService";
 
 const SoundGrid: React.FC = () => {
     return (

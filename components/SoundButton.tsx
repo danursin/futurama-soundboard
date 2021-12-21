@@ -13,92 +13,14 @@ export interface SoundButtonProps {
 }
 const SoundButton: React.FC<SoundButtonProps> = ({ character }) => {
     const [disabled, setDisabled] = useState<boolean>(false);
-    const [clickStart, setClickStart] = useState<number>();
-    const { selectedCharacter, setSelectedCharacter } = useContext(AppContext);
-    const buttonRef = useRef<Button>(null);
 
-    useEffect(() => {
-        if (!clickStart) {
-            return;
-        }
-        const timeout = setTimeout(() => {
-            setSelectedCharacter(character);
-        }, 500);
-        return () => {
-            clearTimeout(timeout);
-        };
-    }, [character, clickStart, selectedCharacter, setSelectedCharacter]);
-
-    const onMouseDown = (event: React.SyntheticEvent) => {
-        event.preventDefault();
-        console.log("Mouse down");
-        setClickStart(+new Date());
-        setSelectedCharacter(undefined);
+    const handleClick = async () => {
+        setDisabled(true);
+        await playSound(soundMap[character]);
+        setDisabled(false);
     };
-    const onMouseUp = async (event: React.SyntheticEvent) => {
-        event.preventDefault();
-        if (!clickStart) {
-            return;
-        }
-
-        setClickStart(undefined);
-
-        const now = +new Date();
-        const duration = now - clickStart;
-        if (duration < 500) {
-            setDisabled(true);
-            await playSound(soundMap[character]);
-            setDisabled(false);
-            setSelectedCharacter(undefined);
-        } else {
-            setSelectedCharacter(character);
-        }
-    };
-
-    const isBasic = (): boolean => {
-        if (!selectedCharacter) {
-            return true;
-        }
-        return false;
-    };
-
-    const getColor = (): SemanticCOLORS | undefined => {
-        if (!selectedCharacter) {
-            return undefined;
-        }
-
-        if (selectedCharacter === character) {
-            return sourceColor;
-        }
-
-        return targetColor;
-    };
-
-    const getOpacity = (): number => {
-        if (!selectedCharacter) {
-            return 1;
-        }
-
-        if (selectedCharacter !== character) {
-            return 1;
-        }
-
-        return 0.5;
-    };
-
     return (
-        <Button
-            type="button"
-            disabled={disabled}
-            fluid
-            onMouseDown={onMouseDown}
-            onMouseUp={onMouseUp}
-            onContextMenu={() => false}
-            ref={buttonRef}
-            style={{ padding: 0, margin: 0, opacity: getOpacity() }}
-            basic={isBasic()}
-            color={getColor()}
-        >
+        <Button type="button" disabled={disabled} fluid onClick={handleClick} style={{ padding: 0, margin: 0 }} basic>
             <Image src={`/img/${imgMap[character]}`} alt={imgMap[character]} centered />
         </Button>
     );
