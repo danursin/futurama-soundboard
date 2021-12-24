@@ -45,3 +45,7 @@ header img {
     display: inline-block;
     vertical-align: middle;
 }
+
+.drop {
+    background-color: #fde690;
+}
