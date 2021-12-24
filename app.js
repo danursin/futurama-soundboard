@@ -16,10 +16,11 @@ $(() => {
             await playSound(character);
         })
         .draggable({
-            revert: true,
+            delay: 200,
             opacity: 0.8,
-            zIndex: 1,
-            revertDuration: 0
+            revert: true,
+            revertDuration: 0,
+            zIndex: 1
         })
         .droppable({
             hoverClass: "drop",
