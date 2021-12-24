@@ -28,7 +28,8 @@ $(() => {
             drop: async (event, ui) => {
                 const sourceCharacter = ui.draggable.attr("data-character");
                 const destinationCharacter = $(event.target).data("character");
-                const name = `${sourceCharacter}_${destinationCharacter}`;
+                const [char1, char2] = [sourceCharacter, destinationCharacter].sort();
+                const name = `${char1}_${char2}`;
                 console.log(`Dropped ${sourceCharacter} to ${destinationCharacter}`);
                 try {
                     await playSound(name);
