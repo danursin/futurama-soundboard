@@ -1,5 +1,6 @@
 import AppContextProvider from "../components/AppContextProvider";
 import Head from "next/head";
+import ModeToggle from "../components/ModeToggle";
 import Navbar from "../components/Navbar";
 import type { NextPage } from "next";
 import SoundGrid from "../components/SoundGrid";
@@ -15,7 +16,7 @@ const Home: NextPage = () => {
             </Head>
 
             <Navbar />
-
+            <ModeToggle />
             <SoundGrid />
         </AppContextProvider>
     );
